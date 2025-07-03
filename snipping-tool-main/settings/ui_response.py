@@ -1,7 +1,7 @@
 from PySide6 import QtWidgets, QtGui, QtCore
 
 class ResponsePopup(QtWidgets.QWidget):
-    def __init__(self, message="⏳ Processing..."):
+    def __init__(self, message="Processing..."):
         super().__init__()
         self.setWindowTitle("Eclip AI")
         self.setFixedSize(380, 90)
@@ -23,7 +23,7 @@ class ResponsePopup(QtWidgets.QWidget):
         self.auto_close_timer.setSingleShot(True)
 
     def show_processing(self):
-        self.set_message("⏳ Processing...")
+        self.set_message("Processing...")
         self.show()
 
     def show_response(self, final_text):
@@ -40,11 +40,11 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
 
     popup = ResponsePopup()
-    popup.set_message("⏳ Processing...")
+    popup.set_message("Processing...")
     popup.show()
 
     def simulate_response():
-        popup.set_message("✅ Final response from API goes here.")
+        popup.set_message("Final response from API goes here.")
         popup.auto_close_timer.start(21000)
 
     QtCore.QTimer.singleShot(3000, simulate_response)

@@ -45,7 +45,7 @@ class SnipWidget(QtWidgets.QWidget):
         bbox = (x1, y1, x2, y2)
 
         # Show loading popup
-        self.loading_popup = ResponsePopup(message="⏳ Processing screenshot... Please wait...")
+        self.loading_popup = ResponsePopup(message="Processing screenshot... Please wait...")
         self.loading_popup.show()
         QtWidgets.QApplication.processEvents()
 
@@ -68,28 +68,28 @@ class SnipWidget(QtWidgets.QWidget):
             os.makedirs(img_dir, exist_ok=True)
             img_path = os.path.join(img_dir, "eclip_ss.png")
             img.save(img_path)
-            print("✅ Screenshot saved")
+            print("Screenshot saved")
 
             # Background task to process OCR + API
             def process_ocr():
                 try:
                     # OCR
                     extracted_text = extract_text_from_image(img_path)
-                    print("🔍 Extracted Text:\n", extracted_text)
+                    print("Extracted Text:\n", extracted_text)
 
-                    # 🔗 Build Prompt based on Correction Mode
+                    # Build Prompt based on Correction Mode
                     from generate.prompt import build_prompt
                     from settings.config import load_config
                     config = load_config()
                     correction_mode = config.get("correction_mode", False)
                     prompt = build_prompt(extracted_text, correction_mode)
 
-                    print("📝 Prompt sent to API:\n", prompt)
+                    print("Prompt sent to API:\n", prompt)
 
-                    # 🌐 Send to LLM API
+                    # Send to LLM API
                     from send.llm_clients.ask_chatgpt import send_to_chatgpt
                     response_text = send_to_chatgpt(prompt)
-                    print("🧠 LLM API RESPONSE:\n", response_text)
+                    print("LLM API RESPONSE:\n", response_text)
 
                     # Update GUI in main thread
                     def show_response_on_main():
@@ -100,13 +100,13 @@ class SnipWidget(QtWidgets.QWidget):
                     QtCore.QTimer.singleShot(0, show_response_on_main)
 
                 except Exception as e:
-                    print("⚠️ Error during OCR/API:", e)
+                    print("Error during OCR/API:", e)
 
-            # 🔄 Run everything in background
+            # Run everything in background
             threading.Thread(target=process_ocr, daemon=True).start()
 
         except Exception as e:
-            print("⚠️ Error during capture_and_process:", e)
+            print("Error during capture_and_process:", e)
 
 
 class SnipApp(QtWidgets.QApplication):
@@ -167,9 +167,9 @@ class SnipApp(QtWidgets.QApplication):
     def disable_hotkey(self):
         try:
             keyboard.remove_hotkey("ctrl+alt+x")
-            print("⛔ Snip hotkey disabled while settings open.")
+            print("Snip hotkey disabled while settings open.")
         except Exception as e:
-            print(f"⚠️ Error disabling hotkey: {e}")
+            print(f"Error disabling hotkey: {e}")
 
     def enable_hotkey(self):
         def hotkey_trigger():
@@ -177,9 +177,9 @@ class SnipApp(QtWidgets.QApplication):
 
         try:
             keyboard.add_hotkey("ctrl+alt+x", hotkey_trigger)
-            print("✅ Snip hotkey re-enabled.")
+            print("Snip hotkey re-enabled.")
         except Exception as e:
-            print(f"⚠️ Error re-enabling hotkey: {e}")
+            print(f"Error re-enabling hotkey: {e}")
 
     @QtCore.Slot()
     def launch_snip(self):
@@ -206,7 +206,7 @@ def launch_tool():
         QtCore.QMetaObject.invokeMethod(app, "launch_snip", QtCore.Qt.QueuedConnection)
 
     threading.Thread(target=lambda: keyboard.add_hotkey("ctrl+alt+x", hotkey_trigger), daemon=True).start()
-    print("📦 Eclip Tool running... Press Ctrl+Alt+X or use tray menu.")
+    print("Eclip Tool running... Press Ctrl+Alt+X or use tray menu.")
     sys.exit(app.exec())
 
 

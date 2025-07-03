@@ -9,7 +9,7 @@ def send_to_chatgpt(extracted_text: str) -> str:
 
     api_key = store_key.load_api_key("ChatGPT")  # Load and decrypt
     if not api_key:
-        return "⚠️ API key not found."
+        return "API key not found."
 
     openai.api_key = api_key
 
@@ -22,4 +22,4 @@ def send_to_chatgpt(extracted_text: str) -> str:
         )
         return response["choices"][0]["message"]["content"].strip()
     except Exception as e:
-        return f"⚠️ API call failed: {e}"
+        return f"API call failed: {e}"

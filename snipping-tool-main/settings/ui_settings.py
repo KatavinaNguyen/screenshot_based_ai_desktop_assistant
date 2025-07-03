@@ -1,5 +1,5 @@
 """
-the 'exit' button doesn't shut down the entire app like if you were running it through the main program snip_tool.py
+The 'exit' button doesn't shut down the entire app like if you were running it through the main program snip_tool.py
 because i set it to where it can close both programs through there
 and if you want to see a standalone settings menu, there's a demo version in the 'test' folder
 """

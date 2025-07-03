@@ -7,7 +7,7 @@ class ProcessPopup(QtWidgets.QWidget):
         self.setWindowTitle("Processing...")
         self.setFixedSize(200, 80)
 
-        # ✅ Keep window movable + on top without modal behavior
+        # Keep window movable + on top without modal behavior
         self.setWindowFlags(QtCore.Qt.Tool | QtCore.Qt.WindowStaysOnTopHint)
 
         layout = QtWidgets.QVBoxLayout()

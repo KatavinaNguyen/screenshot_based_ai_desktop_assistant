@@ -16,7 +16,7 @@ def dispatch_prompt(prompt: str, model: str = "chatgpt") -> str:
     elif model == "gemini":
         return ask_chatgpt.send_prompt_to_gemini(prompt)
     else:
-        return "❌ Invalid model selected."
+        return "Invalid model selected."
 
 
 # add custom = True later on for (open browser + paste prompt)

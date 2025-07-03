@@ -47,7 +47,7 @@ class SnipWidget(QtWidgets.QWidget):
         img_dir = os.path.join(os.getcwd(), "demo_img")
         os.makedirs(img_dir, exist_ok=True)
         img.save(os.path.join(img_dir, "demo_screenshot.png"))
-        print("✅ Screenshot saved to demo_img/demo_screenshot.png")
+        print("Screenshot saved to demo_img/demo_screenshot.png")
 
         QtWidgets.QApplication.restoreOverrideCursor()
         self.app_ref.widgets.remove(self)
@@ -81,7 +81,7 @@ class SnipDemoApp(QtWidgets.QApplication):
 
     @QtCore.Slot()
     def launch_snip(self):
-        print("🔍 Snip triggered (demo)...")
+        print("Snip triggered (demo)...")
         for screen in self.screens():
             screen_geometry = screen.geometry()
             scale_factor = screen.devicePixelRatio()
@@ -102,7 +102,7 @@ def run_demo():
         QtCore.QMetaObject.invokeMethod(app, "launch_snip", QtCore.Qt.QueuedConnection)
 
     threading.Thread(target=lambda: keyboard.add_hotkey("ctrl+alt+x", hotkey_trigger), daemon=True).start()
-    print("🧪 Snip Tool DEMO running in tray. Press Ctrl+Alt+X to test screenshot.")
+    print("Snip Tool DEMO running in tray. Press Ctrl+Alt+X to test screenshot.")
     sys.exit(app.exec())
 
 

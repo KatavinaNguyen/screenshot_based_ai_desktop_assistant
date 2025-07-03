@@ -8,7 +8,7 @@ class MyApp(QtWidgets.QWidget):
         self.setGeometry(100, 100, 300, 200)
 
         # Show the first popup (Processing)
-        self.first_popup = QtWidgets.QLabel("⏳ Processing...", self)
+        self.first_popup = QtWidgets.QLabel("Processing...", self)
         self.first_popup.setAlignment(QtCore.Qt.AlignCenter)
         self.first_popup.setGeometry(50, 50, 200, 100)
         self.first_popup.show()
@@ -21,7 +21,7 @@ class MyApp(QtWidgets.QWidget):
         self.first_popup.close()
 
         # Show the second popup (Result)
-        self.second_popup = QtWidgets.QLabel("✅ Process Completed!", self)
+        self.second_popup = QtWidgets.QLabel("Process Completed!", self)
         self.second_popup.setAlignment(QtCore.Qt.AlignCenter)
         self.second_popup.setGeometry(50, 50, 200, 100)
         self.second_popup.show()
