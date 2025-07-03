@@ -1,7 +1,0 @@
-PySide6~=6.8.2.1
-pillow~=11.1.0
-cryptography~=44.0.2
-keyboard~=0.13.5
-paddleocr~=2.10.0
-pystray~=0.19.5
-openai~=0.28.0
